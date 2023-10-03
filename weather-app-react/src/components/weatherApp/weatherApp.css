@@ -24,6 +24,7 @@
     color: black;
     font-family: fantasy;
     padding-left: 40px;
+    font-weight: 600;
 }
 
 .search-icon {
@@ -34,3 +35,47 @@
     height: 30px;
     cursor: pointer;
 }
+
+.weather-image {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center; 
+}
+
+.weather-temp {
+    display: flex;
+    justify-content: center; 
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.weather-location {
+    display: flex;
+    justify-content: center; 
+    font-size: auto;
+    font-weight: 600;
+}
+
+.data-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center; 
+}
+
+.element {
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+}
+
+.data{
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.text {
+    font-size: 15px;
+    font-weight: 600;
+}
+
