@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './weatherApp.css';
 
 import search_icon from '../assets/search.png';
@@ -11,12 +11,15 @@ import wind_icon from '../assets/wind.png';
 import humidity_icon from '../assets/humidity.png';
 
 
-function weatherApp() {
+function WeatherApp() {
 
     let api_key = "693b44653e5ac79a8b6fbd69b9a1c614";
 
+    const [weatherIcon,setWeatherIcon] = useState(cloud_icon);
+
     const search = async () => {
-        const element = document.getElementsByClassName("cityInput")
+
+        const element = document.getElementsByClassName("cityInput");
         if(element[0].value===""){
             return 0;
         }
@@ -35,13 +38,27 @@ function weatherApp() {
         temprature[0].innerHTML = data.main.temp;
         location[0].innerHTML = data.name;
 
+        if(data.weather[0].icon === "01d" || data.weather[0].icon === "01n"){
+            setWeatherIcon(clear_icon);
+        }else if(data.weather[0].icon === "02d" || data.weather[0].icon === "02n"){
+            setWeatherIcon(cloud_icon);
+        }else if(data.weather[0].icon === "09d" || data.weather[0].icon === "09n"){
+            setWeatherIcon(drizzle_icon);
+        }else if(data.weather[0].icon === "10d" || data.weather[0].icon === "10n"){
+            setWeatherIcon(rain_icon);
+        }else if(data.weather[0].icon === "13d" || data.weather[0].icon === "13n"){
+            setWeatherIcon(snow_icon);
+        }else {
+            setWeatherIcon(clear_icon);
+        }
+
     }   
 
     return (
         <div className="container">
             <div className="top-bar">
                 <input  type="text" 
-                        classname="cityInput"
+                        className="cityInput"
                         placeholder="search"
                 />     
                 <div className="search-icon" onClick={() => {search()}}> 
@@ -49,7 +66,7 @@ function weatherApp() {
                 </div>
             </div>
             <div className="weather-image">
-                <img src={cloud_icon} alt="" />
+                <img src={weatherIcon} alt="" />
             </div>
             <div className="weather-temp">24°c</div>
             <div className="weather-location">London</div>
@@ -73,4 +90,4 @@ function weatherApp() {
     );
 }
     
-export default weatherApp;
+export default WeatherApp;
